@@ -13,10 +13,22 @@
     <table>
         {% for item in items %}
             <tr>
-                <td>{{ item.name }}</td>
-                <td>{{ item.done }}</td>
+                {% if item.done %}
+                    <td><strike>{{ item.name }}</strike></td>
+                {% else %}
+                    <td>{{ item.done }}</td>
+                {% endif %}
+                <td>
+                    <a href="/edit/{{ item.id }}">
+                        <button>Edit</button>
+                    </a>
+                </td>
             </tr>
+            {% empty %}
+            <tr><td>You have nothing to do.</td></tr>
         {% endfor %}
+        
     </table>
+    <a href="/add">Add an Item</a>
 </body>
 </html>
